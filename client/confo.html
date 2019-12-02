@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.css"/>
+    <link rel="stylesheet" href="css/confo.css">
+    <link rel="shortcut icon" type="image/png" href="/img/enablex.png"/>
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="js/tether.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/EnxRtc.js"></script>
+    <script type="text/javascript" src="js/moment.min.js"></script>
+    <script type="text/javascript" src="js/util.js"></script>
+    <script type="text/javascript" src="js/confo.js"></script>
+    <link rel="stylesheet" href="css/jquery.toast.css">
+
+</head>
+<body>
+<div id="local_view">
+</div>
+<div class="container-fluid">
+    <div class="col-md-6 col-md-offset-3">
+        <div class="card" style="border:1px solid grey;margin-top:20px;">
+            <div class="card-header text-uppercase"><b>Chat</b></div>
+            <div class="items-list" >
+                <div id="frame">
+                    <div class="content" id="chat-window">
+                        <div class="messages">
+                            <ul class="chat-message" id="chat-message">
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-block">
+                <textarea class="form-control" name="" placeholder="Type here..." id="chat-text-area"  onkeyup="sendChat(event)"></textarea>
+            </div>
+        </div>
+    </div>
+   <div>
+
+   </div>
+    </div>
+<script type="text/javascript" src="js/jquery.toast.js"></script>
+</body>
+</html>
