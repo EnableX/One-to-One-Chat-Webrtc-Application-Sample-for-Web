@@ -1,9 +1,9 @@
 ///////////////////////////////////////////////////////
 //
-// Application: Multi-Party RTC: Sample Web App
+// Application:  Sample Web Chat App
 // Version: 1.0.0
-// The Sample Web App demonstrates the use of EnableX Server API & Web Toolkit
-// to develop a Multi-Party RTC Application. The main motivation behind this
+// The Sample Web Chat App demonstrates the use of EnableX Server API & Web Toolkit
+// to develop a Chat Application. The main motivation behind this
 // application is to demonstrate usage of APIs and allow developers to ramp up
 // on app by hosting on their own devices instead of directly using servers.
 //
