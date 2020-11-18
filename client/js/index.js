@@ -87,7 +87,7 @@ var createRoom = function (callback) {
       }
     }
   };
-  xhttp.open('POST', '/createRoom/', true);
+  xhttp.open('POST', '/api/create-room/', true);
   xhttp.setRequestHeader('Content-Type', 'application/json');
   xhttp.setRequestHeader('Authorization', `Basic ${btoa(`${username}:${password}`)}`);
   xhttp.send();
