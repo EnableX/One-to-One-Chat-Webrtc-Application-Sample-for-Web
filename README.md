@@ -12,7 +12,7 @@ https://developer.enablex.io/video/browser-compatibility-of-enablex-video/
 
 ## 1. Important!
 
-When developing a Client Application with EnxRtc.js make sure to include the updated EnxRtc.js polyfills from https://developer.enablex.io/video-api/client-api/web-toolkit/ for RTCPeerConnection and getUserMedia. Otherwise your application will not work in web browsers.
+When developing a Client Application with EnxRtc.js ( present in client/js ), make sure to replace the old EnxRtc.js with updated EnxRtc.js polyfills from https://developer.enablex.io/video-api/client-api/web-toolkit/ for RTCPeerConnection and getUserMedia. Otherwise your application will not work in web browsers.
 
 
 ## 2. Trial
@@ -26,9 +26,9 @@ Sign up for a free trial https://portal.enablex.io/cpaas/trial-sign-up/ or try o
 
 #### 3.1.1 App Id and App Key 
 
-* Register with EnableX [https://portal.enablex.io/cpaas/trial-sign-up/] 
-* Create your Application
-* Get your App ID and App Key
+* Create a free account on EnableX [https://portal.enablex.io/cpaas/trial-sign-up/]
+* Create your Project
+* Get the App ID and App Key generated against the Project
 * Clone this Repository `git clone https://github.com/EnableX/One-to-One-Chat-Webrtc-Application-Sample-for-Web.git --recursive` & follow the steps further 
 
 
@@ -43,6 +43,9 @@ However you may use self-signed Certificate to run this application locally. The
 * https://www.akadia.com/services/ssh_test_certificate.html  
 
 The following can also be used to create a self-signed certificate.
+
+Mac/Linux
+
 ```javascript
   cd One-to-One-Chat-Webrtc-Application-Sample-for-Web
   cd server
@@ -51,7 +54,16 @@ The following can also be used to create a self-signed certificate.
   sudo chmod 755 ./certs/example.*
   cd ..
 ```
+Windows (Use Git Bash)
 
+```javascript
+  cd One-to-One-Chat-Webrtc-Application-Sample-for-Web
+  cd server
+  mkdir certs
+  openssl req -x509 -newkey rsa:4096 -keyout ./certs/example.key -out ./certs/example.crt -days 10000 -nodes
+  chmod 755 ./certs/example.*
+  cd ..
+```
 
 #### 3.1.3 Configure
 
@@ -85,9 +97,15 @@ Run `npm install --save` to build the project and the build artifacts will be st
 
 Run `node server.js` inside `server` folder for starting your Server. 
 
+```
+  cd server
+  node server.js
+
+```
+
 #### 3.2.2 Test 
 
-* Open a browser and go to [https://yourdomain.com:4443/](https://yourdomain.com:4443/). The browser should load the App. 
+* Open a browser and go to [https://localhost:3000/](https://localhost:3000/). The browser should load the App. 
 
 
 ## 4. Server API
