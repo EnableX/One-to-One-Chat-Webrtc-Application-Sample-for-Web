@@ -7,6 +7,8 @@
 /// //////////////////////////////////////////////////
 
 let username = null;
+let myFiles = null;
+let id = null;
 let room;
 // Player Options
 
@@ -23,7 +25,7 @@ window.onload = function () {
 
     if (query === url || query === '') return;
 
-    for (i = 0; i < pairs.length; i++) {
+    for (i = 0; i < pairs.length; i += 1) {
       nv = pairs[i].split('=', 2);
       n = decodeURIComponent(nv[0]);
       v = decodeURIComponent(nv[1]);
@@ -64,6 +66,44 @@ window.onload = function () {
         plotChat(obj);
       });
     });
+    room.addEventListener('fs-download-result', (event) => {
+      const msg = event.message;
+      switch (msg.messageType) {
+        case 'download-started':
+          // Note msg.jobId for cancellation
+          // download-started event JSON Example given below
+          break;
+        case 'download-completed':
+          // Know msg.jobId is completed
+          // download-completed event JSON Example given belowbreak;
+          break;
+        case 'download-failed':
+          // Know msg.jobId has failed
+          // download-failed event JSON Example given belowbreak;
+          break;
+        default:
+          break;
+      }
+    });
+    room.addEventListener('fs-upload-result', (event) => {
+      const msg = event.message;
+      switch (msg.messageType) {
+        case 'upload-started':
+          // Note msg.upJobId for management
+          // upload-started event JSON Example given below
+          break;
+        case 'upload-completed':
+          // Know msg.upJobId is completed
+          // upload-completed event JSON Example given belowbreak;
+          break;
+        case 'upload-failed':
+          // Know msg.upJobId has failed
+          // upload-failed event JSON Example given belowbreak;
+          break;
+        default:
+          break;
+      }
+    });
   });
 };
 
@@ -95,15 +135,15 @@ function createChatText(text) {
   const f_name = username;
   const name = username.slice(0, 1);
   const template = `${'<li class="right clearfix"><span class="chat-img pull-right">'
-        + '</span>'
-        + '<div class="chat-body clearfix">'
-        + ' <div class="header1">'
-        + ' <strong class=" primary-font">'}${f_name}</strong>: `
+    + '</span>'
+    + '<div class="chat-body clearfix">'
+    + ' <div class="header1">'
+    + ' <strong class=" primary-font">'}${f_name}</strong>: `
 
-        + `<span>${text} </span>`
-        + ' </div>'
-        + '</div>'
-        + '</li>';
+    + `<span>${text} </span>`
+    + ' </div>'
+    + '</div>'
+    + '</li>';
 
   return template;
 }
@@ -112,16 +152,50 @@ function plotChat(obj) {
   const f_name = obj.username;
   const name = obj.username.slice(0, 1);
   const template = `${' <li class=" clearfix">'
-        + '<span class="chat-img pull-left">'
-        + '</span>'
-        + '<div class="chat-body clearfix">'
-        + '<div class="header1">'
-        + '<strong class="primary-font">'}${f_name}</strong>:  `
-        + `<span>${obj.msg} </span>`
-        + ' </div>'
-        + '</div>'
-        + ' </li>';
+    + '<span class="chat-img pull-left">'
+    + '</span>'
+    + '<div class="chat-body clearfix">'
+    + '<div class="header1">'
+    + '<strong class="primary-font">'}${f_name}</strong>:  `
+    + `<span>${obj.msg} </span>`
+    + ' </div>'
+    + '</div>'
+    + ' </li>';
 
   const elem = document.getElementById('chat-message');
   $(template).appendTo(elem);
+}
+
+// Filesharing
+
+const shareOptions = {
+  isMobile: false,
+  broadcast: true,
+  // "clientList": clientList
+};
+
+const pullfiles = function () {
+  const fileInput = document.querySelector('#myfiles');
+  const { files } = fileInput;
+  room.sendFiles(files, shareOptions, (resp) => {
+    if (resp.result == '0') { // Success JSON Example given below
+      id = resp.response.upJobId;
+    } else {	// Error JSON Example given below
+    }
+  });
+};
+
+function download() {
+  myFiles = room.availableFiles;
+  if (myFiles.length !== 0) {
+    for (let i = 0; i < myFiles.length; i++) {
+      room.recvFiles(myFiles[i].index, {}, (resp) => {
+        if (resp.result == '0') { // Success JSON Example given below
+        } else {	// Error JSON Example given below
+        }
+      });
+    }
+  } else {
+    alert('No files to download');
+  }
 }

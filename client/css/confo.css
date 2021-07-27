@@ -24,6 +24,13 @@ ul.nav.nav-tabs li.active{
 .action_div ul{
     margin-top:10px;
 }
+#toolbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-top: 5px;
+}
 label.label_right{
     float: right;
     font-weight: normal !important;
